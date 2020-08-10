@@ -1,0 +1,85 @@
+<!-- <div *ngFor="let player of players">  
+    <p>{{ player.name }}  |  {{ player.adp }}</p>
+</div> -->
+
+<!-- <div class="container">
+    <div class="left">Left Side Menu</div>
+    <div class="middle" *ngFor="let player of players">{{ player.name }}</div>
+    <div class="right">Right Side Menu</div>
+</div> -->
+
+<div class="container">
+    <div class="toppane">
+        <button (click)="startDraft()">START DRAFT</button>
+    </div>
+
+    <div class="leftpane">
+      <h1>Roster</h1>
+      <ul>
+          <li *ngFor='let in of counter(qbAmount); let i = index'>
+            <p>QB</p> <p *ngIf="teams[1].QBs[i]">{{teams[1].QBs[i]}}</p> 
+          </li>
+          <li *ngFor='let in of counter(rbAmount); let i = index'>
+            <p>RB</p> <p *ngIf="teams[1].RBs[i]">{{teams[1].RBs[i]}}</p> 
+          </li>
+          <li *ngFor='let in of counter(wrAmount); let i = index'>
+            <p>WR</p> <p *ngIf="teams[1].WRs[i]">{{teams[1].WRs[i]}}</p> 
+          </li>
+          <li *ngFor='let in of counter(teAmount); let i = index'>
+            <p>TE</p> <p *ngIf="teams[1].TEs[i]">{{teams[1].TEs[i]}}</p> 
+          </li>
+          <li *ngFor='let in of counter(flexAmount); let i = index'>
+            <p>FLEX</p> <p *ngIf="teams[1].flex[i]">{{teams[1].flex[i]}}</p> 
+          </li>
+          <li *ngFor='let in of counter(dstAmount); let i = index'>
+            <p>DST</p> <p *ngIf="teams[1].DST[i]">{{teams[1].DST[i]}}</p> 
+          </li>
+          <li *ngFor='let in of counter(kickerAmount); let i = index'>
+            <p>K</p> <p *ngIf="teams[1].kicker[i]">{{teams[1].kicker[i]}}</p> 
+          </li>
+          <li *ngFor='let in of counter(benchAmount); let i = index'>
+            <p>BN</p> <p *ngIf="teams[1].bench[i]">{{teams[1].bench[i]}}</p> 
+          </li>
+      </ul>
+
+    </div>
+
+    <div class="middlepane">
+        <div>
+            <ul id="menu">
+                <li id='rank'>RK</li>
+                <li id='player'>PLAYER</li>
+                <li id='adp'>ADP</li>
+                <li id='bye'>BYE</li>
+                <li id='team'>TEAM</li>
+            </ul>  
+        </div>
+        <div id='player' *ngFor="let player of availablePlayers; let i = index">
+                <ul id="menu">
+                    <li id='rank'>{{i+1}}</li>
+                    <li id='player'>{{player.name}}</li>
+                    <li id='adp'>{{player.adp}}</li>
+                    <li id='bye'>{{player.bye}}</li>
+                    <li id='team'>{{player.team}}</li>
+                    <button *ngIf="yourTurnToPick" (click)="pickPlayer(player)">DRAFT</button>
+                </ul>  
+        </div>
+    </div>
+
+    <div class="rightpane">
+      <div>
+        <h1>Draft Board</h1>
+      </div>
+      <div class="scrollList">
+          <ul *ngFor="let pick of pickOrder">
+              <li>
+                  <h5 *ngIf = "pick.pick === 1"> ROUND {{pick.round}}</h5>
+                  <p>{{pick.round}}.{{pick.pick}}</p>
+                  <p *ngIf="pick.team === myTeamID">Your Team</p>
+                  <p *ngIf="pick.team !== myTeamID">Team {{pick.team}}</p>
+                  <p *ngIf="pick.player">{{pick.player}}</p>
+              </li>
+          </ul>
+      </div>
+    </div>
+  </div>
