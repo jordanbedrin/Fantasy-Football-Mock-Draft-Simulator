@@ -14,6 +14,7 @@ export class DraftComponent implements OnInit {
 
   availablePlayers;
   yourTurnToPick = false;
+  filterPlayers = 'all';
 
   currentRoundNumber;
 
@@ -22,14 +23,14 @@ export class DraftComponent implements OnInit {
   //change to allow user input
   myTeamID = 2;
   //change to allow user input
-  numRounds = 14; 
+  numRounds = 16; 
 
   teams = [];
   pickHistory = [];
   pickOrder = [];
   currentPick = 0;
 
-  //change to allow user inputÅ
+  //change to allow user input
   rbAmount = 2;
   wrAmount = 2;
   qbAmount = 1;
@@ -194,6 +195,16 @@ export class DraftComponent implements OnInit {
       this.yourTurnToPick = false;
       this.autoPick();
     }
+  }
+
+  filterPlayerPosition(playerType) {
+    if (playerType === 'all') this.filterPlayers = 'all';
+    if (playerType === 'RBs') this.filterPlayers = 'RBs';
+    if (playerType === 'WRs') this.filterPlayers = 'WRs';
+    if (playerType === 'QBs') this.filterPlayers = 'QBs';
+    if (playerType === 'TEs') this.filterPlayers = 'TEs';
+    if (playerType === 'K') this.filterPlayers = 'K';
+    if (playerType === 'DST') this.filterPlayers = 'DST';
   }
 
   counter(i: number) {

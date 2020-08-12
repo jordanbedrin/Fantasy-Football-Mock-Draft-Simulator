@@ -8,44 +8,106 @@
     <div class="right">Right Side Menu</div>
 </div> -->
 
-<div class="container">
+<div class="myContainer">
     <div class="toppane">
         <button (click)="startDraft()">START DRAFT</button>
     </div>
 
     <div class="leftpane">
-      <h1>Roster</h1>
-      <ul>
+      <h1 class="leftTitle">Roster</h1>
+      <ul class="ulstyle">
           <li *ngFor='let in of counter(qbAmount); let i = index'>
-            <p>QB</p> <p *ngIf="teams[1].QBs[i]">{{teams[1].QBs[i]}}</p> 
+            <!-- <p>QB</p> <p *ngIf="teams[1].QBs[i]">{{teams[1].QBs[i]}}</p>  -->
+            <p>QB &nbsp; {{teams[1].QBs[i] || null}}</p> 
           </li>
           <li *ngFor='let in of counter(rbAmount); let i = index'>
-            <p>RB</p> <p *ngIf="teams[1].RBs[i]">{{teams[1].RBs[i]}}</p> 
+            <p>RB &nbsp; {{teams[1].RBs[i] || null}}</p> 
           </li>
           <li *ngFor='let in of counter(wrAmount); let i = index'>
-            <p>WR</p> <p *ngIf="teams[1].WRs[i]">{{teams[1].WRs[i]}}</p> 
+              <p>WR &nbsp; {{teams[1].WRs[i] || null}}</p> 
           </li>
           <li *ngFor='let in of counter(teAmount); let i = index'>
-            <p>TE</p> <p *ngIf="teams[1].TEs[i]">{{teams[1].TEs[i]}}</p> 
+              <p>TE &nbsp; {{teams[1].TEs[i] || null}}</p> 
           </li>
           <li *ngFor='let in of counter(flexAmount); let i = index'>
-            <p>FLEX</p> <p *ngIf="teams[1].flex[i]">{{teams[1].flex[i]}}</p> 
+              <p>FLEX &nbsp; {{teams[1].flex[i] || null}}</p> 
           </li>
           <li *ngFor='let in of counter(dstAmount); let i = index'>
-            <p>DST</p> <p *ngIf="teams[1].DST[i]">{{teams[1].DST[i]}}</p> 
+              <p>DST &nbsp; {{teams[1].DST[i] || null}}</p> 
           </li>
           <li *ngFor='let in of counter(kickerAmount); let i = index'>
-            <p>K</p> <p *ngIf="teams[1].kicker[i]">{{teams[1].kicker[i]}}</p> 
+              <p>K &nbsp; {{teams[1].kicker[i] || null}}</p> 
           </li>
           <li *ngFor='let in of counter(benchAmount); let i = index'>
-            <p>BN</p> <p *ngIf="teams[1].bench[i]">{{teams[1].bench[i]}}</p> 
+              <p>BN &nbsp; {{teams[1].bench[i] || null}}</p> 
           </li>
       </ul>
+
+
+      
 
     </div>
 
     <div class="middlepane">
-        <div>
+          
+        <table class="table table-striped">
+            <thead>
+            <tr>
+              <th scope="col">RK</th>
+              <th scope="col">Name</th>
+              <th scope="col">ADP</th>
+              <th scope="col">Bye</th>
+              <th>
+              <div class="row">
+                  <div class="col">
+                    <div ngbDropdown class="d-inline-block">
+                      <button class="btn btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle>All</button>
+                      <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+                        <button ngbDropdownItem>All</button>
+                        <button ngbDropdownItem (click)="filterPlayerPosition('RBs')">RBs</button>
+                        <button ngbDropdownItem>WRs</button>
+                      </div>
+                    </div>
+                  </div>
+              </div>
+            </th>
+            </tr>
+            </thead>
+
+            <tbody *ngIf = "filterPlayers === 'all'">
+            <tr *ngFor="let player of availablePlayers; index as i">
+              <th scope="row">{{ i + 1 }}</th>
+              <td>
+                <!-- <img [src]="'https://upload.wikimedia.org/wikipedia/commons/' + country.flag" class="mr-2" style="width: 20px"> -->
+                {{ player.name }}
+              </td>
+              <td>{{ player.adp}}</td>
+              <td>{{ player.bye}}</td>
+              <td>
+                <button *ngIf="!yourTurnToPick" type="button" class="btn btn-secondary">Draft</button>
+                <button *ngIf="yourTurnToPick" (click)="pickPlayer(player)" type="button" class="btn btn-primary">Draft</button>
+              </td>
+            </tr>
+            </tbody>
+            <tbody *ngIf = "filterPlayers === 'RBs'">
+                <tr *ngFor="let player of availablePlayers; index as i">
+                  <th scope="row">{{ i + 1 }}</th>
+                  <td>
+                    <!-- <img [src]="'https://upload.wikimedia.org/wikipedia/commons/' + country.flag" class="mr-2" style="width: 20px"> -->
+                    {{ player.name }}
+                  </td>
+                  <td>{{ player.adp}}</td>
+                  <td>{{ player.bye}}</td>
+                  <td>
+                    <button *ngIf="!yourTurnToPick" type="button" class="btn btn-secondary">Draft</button>
+                    <button *ngIf="yourTurnToPick" (click)="pickPlayer(player)" type="button" class="btn btn-primary">Draft</button>
+                  </td>
+                </tr>
+            </tbody>
+
+          </table>
+
+        <!-- <div>
             <ul id="menu">
                 <li id='rank'>RK</li>
                 <li id='player'>PLAYER</li>
@@ -63,7 +125,7 @@
                     <li id='team'>{{player.team}}</li>
                     <button *ngIf="yourTurnToPick" (click)="pickPlayer(player)">DRAFT</button>
                 </ul>  
-        </div>
+        </div> -->
     </div>
 
     <div class="rightpane">
@@ -71,7 +133,20 @@
         <h1>Draft Board</h1>
       </div>
       <div class="scrollList">
-          <ul *ngFor="let pick of pickOrder">
+          <ul class="list-group" *ngFor="let pick of pickOrder">
+              <li *ngIf = "pick.pick === 1" class="list-group-item"> ROUND {{pick.round}}</li>
+              <li class="list-group-item">
+                  <!-- <h5 *ngIf = "pick.pick === 1"> ROUND {{pick.round}}</h5> -->
+                  <p>{{pick.round}}.{{pick.pick}} &nbsp; {{pick.player || null}}</p>
+                  <p *ngIf="pick.team === myTeamID">Your Team</p>
+                  <p *ngIf="pick.team !== myTeamID">Team {{pick.team}}</p>
+                  <!-- <p *ngIf="pick.player">{{pick.player}}</p> -->
+              </li>
+          </ul>
+
+
+
+          <!-- <ul *ngFor="let pick of pickOrder">
               <li>
                   <h5 *ngIf = "pick.pick === 1"> ROUND {{pick.round}}</h5>
                   <p>{{pick.round}}.{{pick.pick}}</p>
@@ -79,7 +154,7 @@
                   <p *ngIf="pick.team !== myTeamID">Team {{pick.team}}</p>
                   <p *ngIf="pick.player">{{pick.player}}</p>
               </li>
-          </ul>
+          </ul> -->
       </div>
     </div>
   </div>
