@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Team } from '../team';
+import { RosterComponent } from '../roster/roster.component';
+import { NgModule } from '@angular/core';
 
 @Component({
   selector: 'app-draft',
@@ -8,6 +10,9 @@ import { Team } from '../team';
   styleUrls: ['./draft.component.css']
 })
 export class DraftComponent implements OnInit {
+  @NgModule({
+    declarations: [RosterComponent]
+  })
   url = 'https://cors-anywhere.herokuapp.com/https://fantasyfootballcalculator.com/api/v1/adp/ppr?teams=12&year=2020';
   players : [];
   rawData;
@@ -29,6 +34,9 @@ export class DraftComponent implements OnInit {
   pickHistory = [];
   pickOrder = [];
   currentPick = 0;
+
+  //allow user input
+  myTeamNumber = 1;
 
   //change to allow user input
   rbAmount = 2;

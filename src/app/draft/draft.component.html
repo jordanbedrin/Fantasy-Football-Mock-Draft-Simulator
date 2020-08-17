@@ -14,42 +14,21 @@
     </div>
 
     <div class="leftpane">
-      <h1 class="leftTitle">Roster</h1>
-      <ul class="ulstyle">
-          <li *ngFor='let in of counter(qbAmount); let i = index'>
-            <!-- <p>QB</p> <p *ngIf="teams[1].QBs[i]">{{teams[1].QBs[i]}}</p>  -->
-            <p>QB &nbsp; {{teams[1].QBs[i] || null}}</p> 
-          </li>
-          <li *ngFor='let in of counter(rbAmount); let i = index'>
-            <p>RB &nbsp; {{teams[1].RBs[i] || null}}</p> 
-          </li>
-          <li *ngFor='let in of counter(wrAmount); let i = index'>
-              <p>WR &nbsp; {{teams[1].WRs[i] || null}}</p> 
-          </li>
-          <li *ngFor='let in of counter(teAmount); let i = index'>
-              <p>TE &nbsp; {{teams[1].TEs[i] || null}}</p> 
-          </li>
-          <li *ngFor='let in of counter(flexAmount); let i = index'>
-              <p>FLEX &nbsp; {{teams[1].flex[i] || null}}</p> 
-          </li>
-          <li *ngFor='let in of counter(dstAmount); let i = index'>
-              <p>DST &nbsp; {{teams[1].DST[i] || null}}</p> 
-          </li>
-          <li *ngFor='let in of counter(kickerAmount); let i = index'>
-              <p>K &nbsp; {{teams[1].kicker[i] || null}}</p> 
-          </li>
-          <li *ngFor='let in of counter(benchAmount); let i = index'>
-              <p>BN &nbsp; {{teams[1].bench[i] || null}}</p> 
-          </li>
-      </ul>
-
-
-      
-
+      <app-roster 
+        [qbAmount]=qbAmount
+        [rbAmount]=rbAmount
+        [wrAmount]=wrAmount
+        [teAmount]=teAmount
+        [flexAmount]=flexAmount
+        [dstAmount]=dstAmount
+        [kickerAmount]=kickerAmount
+        [benchAmount]=benchAmount
+        [teams]=teams 
+        [myTeamNumber]=[myTeamNumber]>
+      </app-roster>
     </div>
 
     <div class="middlepane">
-          
         <table class="table table-striped">
             <thead>
             <tr>

@@ -6,11 +6,13 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { DraftComponent } from './draft/draft.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { RosterComponent } from './roster/roster.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    DraftComponent
+    DraftComponent,
+    RosterComponent
   ],
   imports: [
     BrowserModule,
