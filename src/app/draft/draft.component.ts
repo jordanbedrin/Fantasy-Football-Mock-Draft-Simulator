@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Team } from '../team';
 import { RosterComponent } from '../roster/roster.component';
 import { NgModule } from '@angular/core';
+import { DraftboardComponent } from '../draftboard/draftboard.component';
 
 @Component({
   selector: 'app-draft',
@@ -11,7 +12,7 @@ import { NgModule } from '@angular/core';
 })
 export class DraftComponent implements OnInit {
   @NgModule({
-    declarations: [RosterComponent]
+    declarations: [RosterComponent, DraftboardComponent]
   })
   url = 'https://cors-anywhere.herokuapp.com/https://fantasyfootballcalculator.com/api/v1/adp/ppr?teams=12&year=2020';
   players : [];
@@ -201,7 +202,7 @@ export class DraftComponent implements OnInit {
       this.yourTurnToPick = true;
     } else {
       this.yourTurnToPick = false;
-      this.autoPick();
+      setTimeout(() => { this.autoPick() }, 500);
     }
   }
 

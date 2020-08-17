@@ -108,32 +108,6 @@
     </div>
 
     <div class="rightpane">
-      <div>
-        <h1>Draft Board</h1>
-      </div>
-      <div class="scrollList">
-          <ul class="list-group" *ngFor="let pick of pickOrder">
-              <li *ngIf = "pick.pick === 1" class="list-group-item"> ROUND {{pick.round}}</li>
-              <li class="list-group-item">
-                  <!-- <h5 *ngIf = "pick.pick === 1"> ROUND {{pick.round}}</h5> -->
-                  <p>{{pick.round}}.{{pick.pick}} &nbsp; {{pick.player || null}}</p>
-                  <p *ngIf="pick.team === myTeamID">Your Team</p>
-                  <p *ngIf="pick.team !== myTeamID">Team {{pick.team}}</p>
-                  <!-- <p *ngIf="pick.player">{{pick.player}}</p> -->
-              </li>
-          </ul>
-
-
-
-          <!-- <ul *ngFor="let pick of pickOrder">
-              <li>
-                  <h5 *ngIf = "pick.pick === 1"> ROUND {{pick.round}}</h5>
-                  <p>{{pick.round}}.{{pick.pick}}</p>
-                  <p *ngIf="pick.team === myTeamID">Your Team</p>
-                  <p *ngIf="pick.team !== myTeamID">Team {{pick.team}}</p>
-                  <p *ngIf="pick.player">{{pick.player}}</p>
-              </li>
-          </ul> -->
-      </div>
+      <app-draftboard [pickOrder]=pickOrder></app-draftboard>
     </div>
   </div>

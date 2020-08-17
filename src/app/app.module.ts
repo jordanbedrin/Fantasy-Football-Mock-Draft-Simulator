@@ -7,12 +7,14 @@ import { AppComponent } from './app.component';
 import { DraftComponent } from './draft/draft.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { RosterComponent } from './roster/roster.component';
+import { DraftboardComponent } from './draftboard/draftboard.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     DraftComponent,
-    RosterComponent
+    RosterComponent,
+    DraftboardComponent
   ],
   imports: [
     BrowserModule,

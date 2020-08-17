@@ -1,0 +1,22 @@
+.scrollList {
+    overflow:auto; 
+    position:absolute; 
+    top: 10%; 
+    left:0; 
+    right:0; 
+    bottom:0;
+  }
+
+  .newRound {
+      text-align: center;
+      padding-top: 2%;
+      padding-bottom: 2%;
+  }
+
+  .boardTitle {
+      text-align: center;
+  }
+
+.noPick {
+    background: #d6e0ff5e;
+}
