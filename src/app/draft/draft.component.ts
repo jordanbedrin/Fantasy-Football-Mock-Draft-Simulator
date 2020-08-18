@@ -28,7 +28,7 @@ export class DraftComponent implements OnInit {
   numTeams = 10;
   //change to allow user input
   myTeamID = 2;
-  //change to allow user input
+  //change to total of all position amounts including bench
   numRounds = 16; 
 
   teams = [];
