@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Team } from '../team';
 import { RosterComponent } from '../roster/roster.component';
 import { NgModule } from '@angular/core';
 import { DraftboardComponent } from '../draftboard/draftboard.component';
+import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-draft',
@@ -14,6 +15,7 @@ export class DraftComponent implements OnInit {
   @NgModule({
     declarations: [RosterComponent, DraftboardComponent]
   })
+  @ViewChild('content', { static: true }) content: TemplateRef<any>;
   url = 'https://cors-anywhere.herokuapp.com/https://fantasyfootballcalculator.com/api/v1/adp/ppr?teams=12&year=2020';
   players : [];
   rawData;
@@ -52,7 +54,7 @@ export class DraftComponent implements OnInit {
   draftType = 'PPR';
 
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private modalService: NgbModal) {
     this.getDraftData();
     this.initializeTeams(this.numTeams);
     this.initializePickOrder(this.numTeams);
@@ -61,6 +63,7 @@ export class DraftComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.modalService.open(this.content);
   }
 
   async getDraftData() {
@@ -214,6 +217,14 @@ export class DraftComponent implements OnInit {
     if (playerType === 'TEs') this.filterPlayers = 'TEs';
     if (playerType === 'K') this.filterPlayers = 'K';
     if (playerType === 'DST') this.filterPlayers = 'DST';
+  }
+
+  open(content) {
+    this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
+ 
+    }, (reason) => {
+ 
+    });
   }
 
   counter(i: number) {
