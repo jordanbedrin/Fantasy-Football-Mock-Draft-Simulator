@@ -18,17 +18,15 @@ export class DraftComponent implements OnInit {
   @ViewChild('content', { static: true }) content: TemplateRef<any>;
   url = 'https://cors-anywhere.herokuapp.com/https://fantasyfootballcalculator.com/api/v1/adp/ppr?teams=12&year=2020';
   players : [];
-  rawData;
+  rawData : any;
 
   availablePlayers;
   yourTurnToPick = false;
   filterPlayers = 'all';
 
-  currentRoundNumber;
-
-
   numTeams = 10;
   myTeamID = 1;
+
   //change to total of all position amounts including bench
   numRounds = 16; 
 
@@ -37,10 +35,7 @@ export class DraftComponent implements OnInit {
   pickOrder = [];
   currentPick = 0;
 
-  //allow user input
-  myTeamNumber = 1;
-
-  //change to allow user input
+  // positions
   rbAmount = 2;
   wrAmount = 2;
   qbAmount = 1;
@@ -52,13 +47,9 @@ export class DraftComponent implements OnInit {
 
   draftType = 'PPR';
 
-
-  constructor(private http: HttpClient, private modalService: NgbModal) {
+  constructor (private http: HttpClient, private modalService: NgbModal) {
     this.getDraftData();
     this.initializeTeams(this.numTeams);
-    // this.initializePickOrder(this.numTeams);
-    console.log(this.teams);
-    console.log('pickOrder', this.pickOrder);
   }
 
   ngOnInit(): void {
@@ -71,14 +62,12 @@ export class DraftComponent implements OnInit {
     });
     this.players = this.rawData.players;
     this.availablePlayers = this.rawData.players;
-    console.log(this.players);
   }
 
   initializeTeams(amountOfTeams) {
     this.teams = [];
     for (let i = 1;  i <= amountOfTeams; i++) {
       let newTeam = new Team(i);
-      // if ()
       this.teams.push(newTeam);
     }
   }
@@ -184,9 +173,7 @@ export class DraftComponent implements OnInit {
 
 
   autoPick() {
-    let num = Math.floor(Math.random() * Math.floor(5));
-    console.log("num", num);
-    console.log(this.availablePlayers[num]);
+    let num = Math.floor(Math.random() * Math.floor(4));
     this.pickOrder[this.currentPick].player = this.availablePlayers[num].name;
     this.availablePlayers.splice(num,1);
     this.nextPick();

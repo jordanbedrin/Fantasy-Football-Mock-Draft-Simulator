@@ -7,19 +7,15 @@
         <ul class="list-group" *ngFor="let pick of pickOrder">
             <li *ngIf = "pick.pick === 1" class="list-group-item" class="newRound"> ROUND {{pick.round}}</li>
             <li *ngIf="pick.player" class="list-group-item">
-                <!-- <h5 *ngIf = "pick.pick === 1"> ROUND {{pick.round}}</h5> -->
-                <p>{{pick.round}}.{{pick.pick}} &nbsp; {{pick.player || null}}</p>
-                <p *ngIf="pick.team === myTeamID">Your Team</p>
-                <p *ngIf="pick.team !== myTeamID">Team {{pick.team}}</p>
-                <!-- <p *ngIf="pick.player">{{pick.player}}</p> -->
+                <p> {{pick.round}}.{{pick.pick}} &nbsp; {{pick.player || null}} </p>
+                <p *ngIf="pick.team == myTeamID">Your Team</p>
+                <p *ngIf="pick.team != myTeamID">Team {{pick.team}} </p>
             </li>
 
             <li *ngIf="!pick.player" class="list-group-item noPick">
-                <!-- <h5 *ngIf = "pick.pick === 1"> ROUND {{pick.round}}</h5> -->
-                <p>{{pick.round}}.{{pick.pick}} &nbsp; {{pick.player || null}}</p>
-                <p *ngIf="pick.team === myTeamID">Your Team</p>
-                <p *ngIf="pick.team !== myTeamID">Team {{pick.team}}</p>
-                <!-- <p *ngIf="pick.player">{{pick.player}}</p> -->
+                <p> {{pick.round}}.{{pick.pick}} &nbsp; {{pick.player || null}} </p>
+                <p *ngIf="pick.team == myTeamID">Your Team</p>
+                <p *ngIf="pick.team != myTeamID">Team {{pick.team}} </p>
             </li>
         </ul>
     </div>

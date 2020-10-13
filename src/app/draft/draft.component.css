@@ -1,24 +1,4 @@
-/* .container {
-    height: 100%; 
-    width: 100%;
-}
-
-.left {
-    width: 25%; 
-    background: blue;
-}
-
-.middle {
-    width: 50%; 
-    background: green;
-}
-
-.right {
-    width: 25%; 
-    background: yellow;;
-} */
-
-body, html {
+  body, html {
     width: 100%;
     height: 100%;
     margin: 0;
@@ -42,9 +22,7 @@ body, html {
   }
 
   #player {
-      /* margin-right: 10%; */
       padding: 4%;
-      /* overflow:auto; position:absolute; top:50px; left: 30%; right:0; bottom:50px; */
   }
 
   #adp {
@@ -82,7 +60,6 @@ body, html {
     width: 100%;
     height: 75px;
     border-collapse: collapse;
-    /* background-color: #4da6ff; */
     background-image: linear-gradient(135deg, #8BC6EC 0%, #9599E2 100%);
   }
 

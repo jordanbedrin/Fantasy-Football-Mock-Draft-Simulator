@@ -7,6 +7,7 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class DraftboardComponent implements OnInit {
   @Input() pickOrder: [];
+  @Input() myTeamID: any;
 
   constructor() { }
 
