@@ -77,15 +77,17 @@
         </div>
 
         <div class="modal-footer">
-          <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click'); initializeTeams(numTeams); initializePickOrder(numTeams);">Save</button>
+          <button type="button" class="btn btn-outline-dark centerFooter" (click)="modal.close('Save click'); initializeTeams(numTeams); initializePickOrder(numTeams);">Start Draft!</button>
         </div>
       </ng-template>
 
 
 
     <div class="toppane">
+      <h1 class="text-center topPaneHeader">Fantasy Football Mock Draft Simulator</h1>
+      <!-- <button class="btn btn-light btn topPaneButton" (click)="startDraft()">START DRAFT</button> -->
         <!-- <button type="button" class="btn btn-light btn-lg" (click)="startDraft()">START DRAFT</button> -->
-        <button (click)="startDraft()">START DRAFT</button>
+        
         <!-- <button >RESTART DRAFT</button>
         <button (click)="open(content)">SETTINGS</button> -->
     </div>

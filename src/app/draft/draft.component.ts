@@ -26,10 +26,9 @@ export class DraftComponent implements OnInit {
 
   currentRoundNumber;
 
-  //change to allow user input
+
   numTeams = 10;
-  //change to allow user input
-  myTeamID = 2;
+  myTeamID = 1;
   //change to total of all position amounts including bench
   numRounds = 16; 
 
@@ -111,6 +110,7 @@ export class DraftComponent implements OnInit {
 
       roundNumber++;
     }
+    this.startDraft();
   }
 
   pickPlayer(player) {
