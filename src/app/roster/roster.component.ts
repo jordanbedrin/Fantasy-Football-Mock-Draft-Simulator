@@ -15,7 +15,7 @@ export class RosterComponent implements OnInit {
   @Input() kickerAmount: number;
   @Input() benchAmount: number;
   @Input() teams;
-  @Input() myTeamNumber;
+  @Input() myTeamID;
 
   constructor() { }
 

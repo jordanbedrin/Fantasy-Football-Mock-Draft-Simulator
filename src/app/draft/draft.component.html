@@ -9,34 +9,75 @@
 </div> -->
 
 <div class="myContainer">
-    <ng-template #content let-modal>
-        <div class="modal-header">
+    <ng-template #content let-modal class="modalSize">
+        <div class="modal-header ">
           <h4 class="modal-title" id="modal-basic-title">Draft Settings</h4>
-          <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+          <!-- <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
             <span aria-hidden="true">&times;</span>
-          </button>
+          </button> -->
         </div>
+
         <div class="modal-body">
-          <form>
-            <div class="form-group">
-              <label>QBs</label>
-              <div class="col">
-                  <div ngbDropdown class="d-inline-block">
-                  <button class="btn btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle>{{qbAmount}}</button>
-                    <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
-                      <button ngbDropdownItem>1</button>
-                      <button ngbDropdownItem>2</button>
-                      <button ngbDropdownItem>3</button>
-                      <button ngbDropdownItem>4</button>
-                    </div>
-                  </div>
-              </div>
-       
-            </div>
-          </form>
+          <div class="modalLeft">
+
+           <div class="positionSettings">
+              <h5 class="inlineHeader">QB:  {{qbAmount}}</h5>
+              <button type="button" (click)="increment('QB')" class="btn btn-primary btn-sm buttonWidth ">+</button>
+              <button type="button" (click)="decrement('QB')" class="btn btn-primary btn-sm buttonWidth ">-</button>
+          </div>
+
+          <div class="positionSettings">
+              <h5 class="inlineHeader">RB:  {{rbAmount}}</h5> 
+              <button type="button" (click)="increment('RB')" class="btn btn-primary btn-sm buttonWidth ">+</button>
+              <button type="button" (click)="decrement('RB')" class="btn btn-primary btn-sm buttonWidth ">-</button>
+          </div>
+
+          <div class="positionSettings">
+              <h5 class="inlineHeader">WR:  {{wrAmount}}</h5> 
+              <button type="button" (click)="increment('WR')" class="btn btn-primary btn-sm buttonWidth ">+</button>
+              <button type="button" (click)="decrement('WR')" class="btn btn-primary btn-sm buttonWidth ">-</button>
+          </div>
+
+          <div class="positionSettings">
+              <h5 class="inlineHeader">TE:  {{teAmount}}</h5> 
+              <button type="button" (click)="increment('TE')" class="btn btn-primary btn-sm buttonWidth ">+</button>
+              <button type="button" (click)="decrement('TE')" class="btn btn-primary btn-sm buttonWidth ">-</button>
+          </div>
+
+          <div class="positionSettings">
+              <h5 class="inlineHeader">FLX:  {{flexAmount}}</h5> 
+              <button type="button" (click)="increment('FLEX')" class="btn btn-primary btn-sm buttonWidth ">+</button>
+              <button type="button" (click)="decrement('FLEX')" class="btn btn-primary btn-sm buttonWidth ">-</button>
+          </div>
+
+          <div class="positionSettings">
+              <h5 class="inlineHeader">BN:  {{benchAmount}}</h5> 
+              <button type="button" (click)="increment('BENCH')" class="btn btn-primary btn-sm buttonWidth ">+</button>
+              <button type="button" (click)="decrement('BENCH')" class="btn btn-primary btn-sm buttonWidth ">-</button>
+          </div>
+
         </div>
+
+        <div class="modalRight">
+            <div class="draftSettings">
+                <h5 class="inlineHeaderRight">Teams:  {{numTeams}}</h5> 
+                <button type="button" (click)="increment('TEAMS')" class="btn btn-primary btn-sm buttonWidth ">+</button>
+                <button type="button" (click)="decrement('TEAMS')" class="btn btn-primary btn-sm buttonWidth ">-</button>
+            </div>
+        </div>
+
+        <div class="modalRight">
+            <div class="draftSettings">
+                <h5 class="inlineHeaderRight">Pick:  {{myTeamID}}</h5> 
+                <button type="button" (click)="increment('PICK')" class="btn btn-primary btn-sm buttonWidth ">+</button>
+                <button type="button" (click)="decrement('PICK')" class="btn btn-primary btn-sm buttonWidth ">-</button>
+            </div>
+        </div>
+          
+        </div>
+
         <div class="modal-footer">
-          <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Save</button>
+          <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click'); initializeTeams(numTeams); initializePickOrder(numTeams);">Save</button>
         </div>
       </ng-template>
 
@@ -45,11 +86,11 @@
     <div class="toppane">
         <!-- <button type="button" class="btn btn-light btn-lg" (click)="startDraft()">START DRAFT</button> -->
         <button (click)="startDraft()">START DRAFT</button>
-        <button >RESTART DRAFT</button>
-        <button (click)="open(content)">SETTINGS</button>
+        <!-- <button >RESTART DRAFT</button>
+        <button (click)="open(content)">SETTINGS</button> -->
     </div>
 
-    <div class="leftpane">
+    <div class="leftpane scrollList" >
       <app-roster 
         [qbAmount]=qbAmount
         [rbAmount]=rbAmount
@@ -60,11 +101,11 @@
         [kickerAmount]=kickerAmount
         [benchAmount]=benchAmount
         [teams]=teams 
-        [myTeamNumber]=[myTeamNumber]>
+        [myTeamID]=[myTeamID]>
       </app-roster>
     </div>
 
-    <div class="middlepane">
+    <div class="middlepane scrollList" >
         <table class="table table-striped">
             <thead>
             <tr>

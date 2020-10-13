@@ -57,7 +57,7 @@ export class DraftComponent implements OnInit {
   constructor(private http: HttpClient, private modalService: NgbModal) {
     this.getDraftData();
     this.initializeTeams(this.numTeams);
-    this.initializePickOrder(this.numTeams);
+    // this.initializePickOrder(this.numTeams);
     console.log(this.teams);
     console.log('pickOrder', this.pickOrder);
   }
@@ -76,6 +76,7 @@ export class DraftComponent implements OnInit {
   }
 
   initializeTeams(amountOfTeams) {
+    this.teams = [];
     for (let i = 1;  i <= amountOfTeams; i++) {
       let newTeam = new Team(i);
       // if ()
@@ -217,6 +218,32 @@ export class DraftComponent implements OnInit {
     if (playerType === 'TEs') this.filterPlayers = 'TEs';
     if (playerType === 'K') this.filterPlayers = 'K';
     if (playerType === 'DST') this.filterPlayers = 'DST';
+  }
+
+  increment(playerType) {
+    if (playerType === 'QB') this.qbAmount++;
+    if (playerType === 'RB') this.rbAmount++;
+    if (playerType === 'WR') this.wrAmount++;
+    if (playerType === 'TE') this.teAmount++;
+    if (playerType === 'FLEX') this.flexAmount++;
+    if (playerType === 'DST') this.dstAmount++;
+    if (playerType === 'KICKER') this.kickerAmount++;
+    if (playerType === 'BENCH') this.benchAmount++;
+    if (playerType === 'TEAMS') this.numTeams++;
+    if (playerType === 'PICK') this.myTeamID++;
+  }
+
+  decrement(playerType) {
+    if (playerType === 'QB') this.qbAmount--;
+    if (playerType === 'RB') this.rbAmount--;
+    if (playerType === 'WR') this.wrAmount--;
+    if (playerType === 'TE') this.teAmount--;
+    if (playerType === 'FLEX') this.flexAmount--;
+    if (playerType === 'DST') this.dstAmount--;
+    if (playerType === 'KICKER') this.kickerAmount--;
+    if (playerType === 'BENCH') this.benchAmount--;
+    if (playerType === 'TEAMS') this.numTeams--;
+    if (playerType === 'PICK') this.myTeamID--;
   }
 
   open(content) {
