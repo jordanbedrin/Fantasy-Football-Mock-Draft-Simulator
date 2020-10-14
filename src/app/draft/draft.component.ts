@@ -25,9 +25,8 @@ export class DraftComponent implements OnInit {
   filterPlayers = 'all';
 
   numTeams = 10;
-  myTeamID = 1;
-
-  //change to total of all position amounts including bench
+  myTeamID = 1; 
+  
   numRounds = 16; 
 
   teams = [];
@@ -99,6 +98,11 @@ export class DraftComponent implements OnInit {
 
       roundNumber++;
     }
+    
+    //calculate number of rounds
+    this.numRounds = this.rbAmount + this.wrAmount + this.qbAmount + this.teAmount
+    + this.flexAmount + this.dstAmount + this.kickerAmount + this.benchAmount;
+
     this.startDraft();
   }
 
@@ -193,7 +197,7 @@ export class DraftComponent implements OnInit {
       this.yourTurnToPick = true;
     } else {
       this.yourTurnToPick = false;
-      setTimeout(() => { this.autoPick() }, 500);
+      setTimeout(() => { this.autoPick() }, 700);
     }
   }
 
