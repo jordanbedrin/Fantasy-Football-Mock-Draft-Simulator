@@ -72,6 +72,10 @@ export class DraftComponent implements OnInit {
   }
 
   initializePickOrder(numTeams) {
+    // calculate number of rounds
+    this.numRounds = this.rbAmount + this.wrAmount + this.qbAmount + this.teAmount
+    + this.flexAmount + this.dstAmount + this.kickerAmount + this.benchAmount;
+    
     let roundNumber= 1;
     for (let i = roundNumber; i <= this.numRounds; i++) {
       let pickNumber = 1;
@@ -98,10 +102,6 @@ export class DraftComponent implements OnInit {
 
       roundNumber++;
     }
-    
-    //calculate number of rounds
-    this.numRounds = this.rbAmount + this.wrAmount + this.qbAmount + this.teAmount
-    + this.flexAmount + this.dstAmount + this.kickerAmount + this.benchAmount;
 
     this.startDraft();
   }
@@ -115,6 +115,31 @@ export class DraftComponent implements OnInit {
       }
     }
     this.nextPick();
+  }
+
+  autoPick() {
+    let num = Math.floor(Math.random() * Math.floor(4));
+    this.pickOrder[this.currentPick].player = this.availablePlayers[num].name;
+    this.availablePlayers.splice(num,1);
+    this.nextPick();
+  }
+
+  nextPick() {
+    this.currentPick++;
+    if (this.pickOrder[this.currentPick].team === this.myTeamID) {
+      this.yourTurnToPick = true;
+    } else {
+      this.yourTurnToPick = false;
+      setTimeout(() => { this.autoPick() }, 700);
+    }
+  }
+
+  startDraft() {
+    if (this.myTeamID === 1) {
+      this.yourTurnToPick = true;
+    } else {
+      this.autoPick();
+    }
   }
 
   addPlayerToTeam(player, teamID) {
@@ -166,38 +191,6 @@ export class DraftComponent implements OnInit {
       } else if (this.teams[teamID-1].bench.length < this.benchAmount) {
         this.teams[teamID-1].bench.push(player.name);
       }
-    }
-    if (player.position === 'PK') {
-
-    }
-    if (player.position === 'DEF') {
-     
-    }
-  }
-
-
-  autoPick() {
-    let num = Math.floor(Math.random() * Math.floor(4));
-    this.pickOrder[this.currentPick].player = this.availablePlayers[num].name;
-    this.availablePlayers.splice(num,1);
-    this.nextPick();
-  }
-
-  startDraft() {
-    if (this.myTeamID === 1) {
-      this.yourTurnToPick = true;
-    } else {
-      this.autoPick();
-    }
-  }
-
-  nextPick() {
-    this.currentPick++;
-    if (this.pickOrder[this.currentPick].team === this.myTeamID) {
-      this.yourTurnToPick = true;
-    } else {
-      this.yourTurnToPick = false;
-      setTimeout(() => { this.autoPick() }, 700);
     }
   }
 

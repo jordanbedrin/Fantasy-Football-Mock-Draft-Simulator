@@ -5,18 +5,23 @@
 
     <div class="scrollList">
         <ul class="list-group" *ngFor="let pick of pickOrder">
+
             <li *ngIf = "pick.pick === 1" class="list-group-item" class="newRound"> ROUND {{pick.round}}</li>
+
+            <!-- Player already picked-->
             <li *ngIf="pick.player" class="list-group-item">
                 <p> {{pick.round}}.{{pick.pick}} &nbsp; {{pick.player || null}} </p>
                 <p *ngIf="pick.team == myTeamID">Your Team</p>
                 <p *ngIf="pick.team != myTeamID">Team {{pick.team}} </p>
             </li>
 
+            <!-- No Player picked-->
             <li *ngIf="!pick.player" class="list-group-item noPick">
-                <p> {{pick.round}}.{{pick.pick}} &nbsp; {{pick.player || null}} </p>
+                <p> {{pick.round}}.{{pick.pick}} </p>
                 <p *ngIf="pick.team == myTeamID">Your Team</p>
                 <p *ngIf="pick.team != myTeamID">Team {{pick.team}} </p>
             </li>
+
         </ul>
     </div>
 </div>
